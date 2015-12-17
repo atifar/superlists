@@ -8,7 +8,7 @@ class ItemValidationTest(FunctionalTest):
 
     def is_input_box_focussed(self):
         return (self.browser.find_element_by_css_selector('#id_text:focus') is
-            not None)
+                not None)
 
     def test_cannot_add_empty_list_items(self):
         # Edith goes to the home page and accidentally tries to submit

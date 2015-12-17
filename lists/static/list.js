@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
-    $('input').on('keypress', function () {
+    $('#id_text').focus();
+    $('#id_text').on('keypress', function () {
         $('.has-error').hide();
     });
 });
