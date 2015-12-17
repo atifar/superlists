@@ -6,6 +6,10 @@ class ItemValidationTest(FunctionalTest):
     def get_error_element(self):
         return self.browser.find_element_by_css_selector('.has-error')
 
+    def is_input_box_focussed(self):
+        return (self.browser.find_element_by_css_selector('#id_text:focus') is
+            not None)
+
     def test_cannot_add_empty_list_items(self):
         # Edith goes to the home page and accidentally tries to submit
         # an empty list item. She hits Enter on the empty input box
@@ -61,3 +65,26 @@ class ItemValidationTest(FunctionalTest):
         # She is pleased to see that the error message disappears
         error = self.get_error_element()
         self.assertFalse(error.is_displayed())
+
+    def test_item_input_gets_focus_on_page_load(self):
+        # Edith goes to the home page and finds that the input box
+        # has the cursor in it, waiting for her to enter something.
+        self.browser.get(self.server_url)
+        self.assertTrue(self.is_input_box_focussed())
+
+        # She enters a new item
+        self.get_item_input_box().send_keys('Pick up prescription\n')
+
+        # The page reloads showing the new item in the list.
+        # Edith is pleased to find that the input box again has
+        # the cursor in it, ready for the next item.
+        self.assertTrue(self.is_input_box_focussed())
+
+        # Edith tries to submit a blank list item
+        self.get_item_input_box().send_keys('\n')
+
+        # The page reloads again, but this time showing the error
+        # message about blank items being disallowed. She is
+        # pleased to find that the input box again has
+        # the cursor in it, ready for her to correct the error.
+        self.assertTrue(self.is_input_box_focussed())
