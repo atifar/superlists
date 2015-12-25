@@ -26,7 +26,7 @@ SECRET_KEY = 'ey02(5f$5$+%&h5)o45eq7wo&e12jm#mzcw&m2tw(u66pu9t80'
 DEBUG = True
 
 # This setting is changed by the deploy script
-DOMAIN = 'localhost'
+DOMAIN = "localhost"
 
 ALLOWED_HOSTS = [DOMAIN]
 
