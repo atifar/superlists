@@ -24,6 +24,7 @@ class LoginTest(FunctionalTest):
         # The Persona window closes
         self.switch_to_new_window('To-Do')
 
+        time.sleep(1)
         # She can see that she is logged in
         self.wait_to_be_logged_in(email=TEST_EMAIL)
 
